@@ -1,0 +1,157 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|d:\\study\\.net\\nhom4_quanlydatsan\\nhom4_quanlydatsan\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|solutionrelative:nhom4_quanlydatsan\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|d:\\study\\.net\\nhom4_quanlydatsan\\nhom4_quanlydatsan\\data\\sportsbookingcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|solutionrelative:nhom4_quanlydatsan\\data\\sportsbookingcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|d:\\study\\.net\\nhom4_quanlydatsan\\nhom4_quanlydatsan\\helpers\\datetimehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|solutionrelative:nhom4_quanlydatsan\\helpers\\datetimehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|d:\\study\\.net\\nhom4_quanlydatsan\\nhom4_quanlydatsan\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|solutionrelative:nhom4_quanlydatsan\\services\\authenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|d:\\study\\.net\\nhom4_quanlydatsan\\nhom4_quanlydatsan\\services\\iauthenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|solutionrelative:nhom4_quanlydatsan\\services\\iauthenticationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|d:\\study\\.net\\nhom4_quanlydatsan\\nhom4_quanlydatsan\\forms\\owner\\ownermainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|solutionrelative:nhom4_quanlydatsan\\forms\\owner\\ownermainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|d:\\study\\.net\\nhom4_quanlydatsan\\nhom4_quanlydatsan\\forms\\admin\\adminmainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C01231EB-D397-4A46-A419-D0FAEB8F3CCF}|NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN.csproj|solutionrelative:nhom4_quanlydatsan\\forms\\admin\\adminmainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DateTimeHelper.cs",
+              "DocumentMoniker": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Helpers\\DateTimeHelper.cs",
+              "RelativeDocumentMoniker": "NHOM4_QUANLYDATSAN\\Helpers\\DateTimeHelper.cs",
+              "ToolTip": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Helpers\\DateTimeHelper.cs",
+              "RelativeToolTip": "NHOM4_QUANLYDATSAN\\Helpers\\DateTimeHelper.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAUwA4AAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T13:04:40.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthenticationService.cs",
+              "DocumentMoniker": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Services\\AuthenticationService.cs",
+              "RelativeDocumentMoniker": "NHOM4_QUANLYDATSAN\\Services\\AuthenticationService.cs",
+              "ToolTip": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Services\\AuthenticationService.cs",
+              "RelativeToolTip": "NHOM4_QUANLYDATSAN\\Services\\AuthenticationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T13:03:33.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IAuthenticationService.cs",
+              "DocumentMoniker": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Services\\IAuthenticationService.cs",
+              "RelativeDocumentMoniker": "NHOM4_QUANLYDATSAN\\Services\\IAuthenticationService.cs",
+              "ToolTip": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Services\\IAuthenticationService.cs",
+              "RelativeToolTip": "NHOM4_QUANLYDATSAN\\Services\\IAuthenticationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T13:02:57.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SportsBookingContext.cs",
+              "DocumentMoniker": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Data\\SportsBookingContext.cs",
+              "RelativeDocumentMoniker": "NHOM4_QUANLYDATSAN\\Data\\SportsBookingContext.cs",
+              "ToolTip": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Data\\SportsBookingContext.cs",
+              "RelativeToolTip": "NHOM4_QUANLYDATSAN\\Data\\SportsBookingContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T12:57:28.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Models\\User.cs",
+              "RelativeDocumentMoniker": "NHOM4_QUANLYDATSAN\\Models\\User.cs",
+              "ToolTip": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Models\\User.cs",
+              "RelativeToolTip": "NHOM4_QUANLYDATSAN\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T12:56:38.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OwnerMainForm.cs [Design]",
+              "DocumentMoniker": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Forms\\Owner\\OwnerMainForm.cs",
+              "RelativeDocumentMoniker": "NHOM4_QUANLYDATSAN\\Forms\\Owner\\OwnerMainForm.cs",
+              "ToolTip": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Forms\\Owner\\OwnerMainForm.cs [Design]",
+              "RelativeToolTip": "NHOM4_QUANLYDATSAN\\Forms\\Owner\\OwnerMainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T12:56:04.114Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminMainForm.cs [Design]",
+              "DocumentMoniker": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Forms\\Admin\\AdminMainForm.cs",
+              "RelativeDocumentMoniker": "NHOM4_QUANLYDATSAN\\Forms\\Admin\\AdminMainForm.cs",
+              "ToolTip": "D:\\Study\\.NET\\NHOM4_QUANLYDATSAN\\NHOM4_QUANLYDATSAN\\Forms\\Admin\\AdminMainForm.cs [Design]",
+              "RelativeToolTip": "NHOM4_QUANLYDATSAN\\Forms\\Admin\\AdminMainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T12:55:49.01Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
