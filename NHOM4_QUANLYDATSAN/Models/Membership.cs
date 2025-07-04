@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace NHOM4_QUANLYDATSAN.Models
 {
     public class Membership
     {
+        [Key]
         public int MemberID { get; set; }
         public string CustomerName { get; set; }
         public string CustomerPhone { get; set; }

@@ -20,7 +20,5 @@ namespace NHOM4_QUANLYDATSAN.Models
         public virtual Court Court { get; set; }
         public virtual Membership Membership { get; set; }
         public virtual User CreatedBy { get; set; }
-        public virtual Payment Payment { get; set; }
-        public virtual Invoice Invoice { get; set; }
     }
 } 
