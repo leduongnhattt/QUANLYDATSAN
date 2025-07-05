@@ -3,19 +3,28 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
+using NHOM4_QUANLYDATSAN.Services;
+using NHOM4_QUANLYDATSAN.Forms.Admin;
+using NHOM4_QUANLYDATSAN.Forms.Owner;
 
 namespace NHOM4_QUANLYDATSAN.Forms
 {
     public partial class LoginForm : Form
     {
+        private const string ADMIN = "Admin";
         private bool isPasswordVisible = false;
         private readonly string usernamePlaceholder = "Tên đăng nhập";
         private readonly string passwordPlaceholder = "Mật khẩu";
         private bool isTextChangedRegistered = false;
 
+        private AuthenticationService _authenticationService;
+
+        
         public LoginForm()
         {
             InitializeComponent();
+            _authenticationService = new AuthenticationService();
             // Cho phép kéo form bằng title bar custom
             panelTitleBar.MouseDown += PanelTitleBar_MouseDown;
             if (!isTextChangedRegistered)
@@ -161,19 +170,51 @@ namespace NHOM4_QUANLYDATSAN.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        // Xử lý đăng nhập (bạn bổ sung logic thực tế ở đây)
+        
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
+
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
-            if (username == usernamePlaceholder || string.IsNullOrWhiteSpace(username) ||
-                password == passwordPlaceholder || string.IsNullOrWhiteSpace(password))
+
+            if (username == usernamePlaceholder || string.IsNullOrWhiteSpace(username))
             {
-                MessageBox.Show("Vui lòng nhập tên đăng nhập và mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập tên đăng nhập!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            // TODO: Thêm logic xác thực tài khoản ở đây
-            MessageBox.Show($"Đăng nhập với user: {username}", "Thông báo");
+
+            if (password == passwordPlaceholder || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!_authenticationService.ValidatePassword(password))
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 6 ký tự, bao gồm ít nhất một ký tự đặc biệt và một chữ số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string role;
+            if (!_authenticationService.Authenticate(username, password, out role))
+            {
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (role == ADMIN)
+            {
+                AdminMainForm adminForm = new AdminMainForm();
+                adminForm.Show();
+            }
+            else
+            {
+                OwnerMainForm ownerForm = new OwnerMainForm();
+                ownerForm.Show();
+            }
+
+            this.Hide();
         }
     }
-} 
+}

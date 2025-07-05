@@ -37,8 +37,11 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnShowHidePassword = new System.Windows.Forms.Button();
             this.panelGradient = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelTitleBar.SuspendLayout();
             this.panelLogin.SuspendLayout();
+            this.panelGradient.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitleBar
@@ -60,9 +63,9 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(1265, 4);
+            this.btnMinimize.Location = new System.Drawing.Point(1267, 0);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(36, 36);
+            this.btnMinimize.Size = new System.Drawing.Size(55, 36);
             this.btnMinimize.TabIndex = 0;
             this.btnMinimize.Text = "_";
             this.btnMinimize.UseVisualStyleBackColor = false;
@@ -75,9 +78,9 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximize.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnMaximize.ForeColor = System.Drawing.Color.White;
-            this.btnMaximize.Location = new System.Drawing.Point(1298, 13);
+            this.btnMaximize.Location = new System.Drawing.Point(1300, 9);
             this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(36, 36);
+            this.btnMaximize.Size = new System.Drawing.Size(55, 36);
             this.btnMaximize.TabIndex = 1;
             this.btnMaximize.Text = "❐";
             this.btnMaximize.UseVisualStyleBackColor = false;
@@ -90,9 +93,9 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(1334, 13);
+            this.btnClose.Location = new System.Drawing.Point(1336, 9);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(36, 36);
+            this.btnClose.Size = new System.Drawing.Size(55, 36);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "✕";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -174,11 +177,23 @@ namespace NHOM4_QUANLYDATSAN.Forms
             // 
             // panelGradient
             // 
+            this.panelGradient.Controls.Add(this.pictureBox1);
             this.panelGradient.Location = new System.Drawing.Point(500, 55);
             this.panelGradient.Name = "panelGradient";
             this.panelGradient.Size = new System.Drawing.Size(900, 695);
             this.panelGradient.TabIndex = 2;
             this.panelGradient.Paint += new System.Windows.Forms.PaintEventHandler(this.panelGradient_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.san_3;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(900, 695);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // LoginForm
             // 
@@ -198,8 +213,32 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.panelTitleBar.ResumeLayout(false);
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
+            this.panelGradient.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
+
+        private System.Windows.Forms.PictureBox pictureBox1;
+
+        private void pictureBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+            string line1 = "HỆ THỐNG QUẢN LÝ ĐẶT SÂN THỂ THAO";
+            string line2 = "Nhóm 4";
+            System.Drawing.Font fontLine1 = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
+            System.Drawing.Font fontLine2 = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
+
+            System.Drawing.SizeF textSizeLine1 = e.Graphics.MeasureString(line1, fontLine1);
+            System.Drawing.SizeF textSizeLine2 = e.Graphics.MeasureString(line2, fontLine2);
+
+            float xLine1 = (pictureBox1.Width - textSizeLine1.Width) / 2;
+            float yLine1 = (pictureBox1.Height - textSizeLine1.Height - textSizeLine2.Height) / 2;
+
+            float xLine2 = (pictureBox1.Width - textSizeLine2.Width) / 2;
+            float yLine2 = yLine1 + textSizeLine1.Height + 10; // khoảng cách giữa hai dòng
+
+            e.Graphics.DrawString(line1, fontLine1, new System.Drawing.SolidBrush(System.Drawing.Color.Blue), xLine1, yLine1);
+            e.Graphics.DrawString(line2, fontLine2, new System.Drawing.SolidBrush(System.Drawing.Color.Blue), xLine2, yLine2);
+        }
     }
-} 
+}

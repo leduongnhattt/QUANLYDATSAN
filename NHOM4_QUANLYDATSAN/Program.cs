@@ -1,4 +1,5 @@
 ﻿using NHOM4_QUANLYDATSAN.Forms;
+using NHOM4_QUANLYDATSAN.Forms.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace NHOM4_QUANLYDATSAN
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new FormTmp());
         }
     }
 }
