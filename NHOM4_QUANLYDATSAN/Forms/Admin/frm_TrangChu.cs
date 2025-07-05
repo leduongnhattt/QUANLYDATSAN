@@ -15,6 +15,20 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         public frm_TrangChu()
         {
             InitializeComponent();
+            this.Dock = DockStyle.Fill;
+        }
+
+        private void frm_TrangChu_Load(object sender, EventArgs e)
+        {
+            this.ControlBox = false;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.Dock = DockStyle.Fill;
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            this.Invalidate();
         }
     }
 }

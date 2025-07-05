@@ -1,6 +1,6 @@
 ﻿namespace NHOM4_QUANLYDATSAN.Forms.Admin
 {
-    partial class FormTmp
+    partial class AdminMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,24 +32,24 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.nightControlBox1 = new ReaLTaiizor.Controls.NightControlBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_Ham = new System.Windows.Forms.PictureBox();
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.pn_TrangChu = new System.Windows.Forms.Panel();
-            this.pn_NguoiDung = new System.Windows.Forms.Panel();
-            this.pn_DangXuat = new System.Windows.Forms.Panel();
-            this.pn_CaiDat = new System.Windows.Forms.Panel();
-            this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
-            this.btn_NguoiDung = new System.Windows.Forms.Button();
-            this.btn_DangXuat = new System.Windows.Forms.Button();
-            this.btn_CaiDat = new System.Windows.Forms.Button();
-            this.btn_Ham = new System.Windows.Forms.PictureBox();
             this.btn_TrangChu = new System.Windows.Forms.Button();
+            this.pn_CaiDat = new System.Windows.Forms.Panel();
+            this.btn_CaiDat = new System.Windows.Forms.Button();
+            this.pn_DangXuat = new System.Windows.Forms.Panel();
+            this.btn_DangXuat = new System.Windows.Forms.Button();
+            this.pn_NguoiDung = new System.Windows.Forms.Panel();
+            this.btn_NguoiDung = new System.Windows.Forms.Button();
+            this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_Ham)).BeginInit();
             this.sidebar.SuspendLayout();
             this.pn_TrangChu.SuspendLayout();
-            this.pn_NguoiDung.SuspendLayout();
-            this.pn_DangXuat.SuspendLayout();
             this.pn_CaiDat.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btn_Ham)).BeginInit();
+            this.pn_DangXuat.SuspendLayout();
+            this.pn_NguoiDung.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -98,6 +98,17 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "QUAN LY SAN THE THAO";
             // 
+            // btn_Ham
+            // 
+            this.btn_Ham.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_menu_30;
+            this.btn_Ham.Location = new System.Drawing.Point(19, 12);
+            this.btn_Ham.Name = "btn_Ham";
+            this.btn_Ham.Size = new System.Drawing.Size(51, 43);
+            this.btn_Ham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.btn_Ham.TabIndex = 1;
+            this.btn_Ham.TabStop = false;
+            this.btn_Ham.Click += new System.EventHandler(this.btn_Ham_Click);
+            // 
             // sidebar
             // 
             this.sidebar.BackColor = System.Drawing.Color.DodgerBlue;
@@ -120,23 +131,23 @@
             this.pn_TrangChu.Size = new System.Drawing.Size(328, 73);
             this.pn_TrangChu.TabIndex = 3;
             // 
-            // pn_NguoiDung
+            // btn_TrangChu
             // 
-            this.pn_NguoiDung.BackColor = System.Drawing.SystemColors.Highlight;
-            this.pn_NguoiDung.Controls.Add(this.btn_NguoiDung);
-            this.pn_NguoiDung.Location = new System.Drawing.Point(3, 82);
-            this.pn_NguoiDung.Name = "pn_NguoiDung";
-            this.pn_NguoiDung.Size = new System.Drawing.Size(328, 73);
-            this.pn_NguoiDung.TabIndex = 4;
-            // 
-            // pn_DangXuat
-            // 
-            this.pn_DangXuat.BackColor = System.Drawing.SystemColors.Highlight;
-            this.pn_DangXuat.Controls.Add(this.btn_DangXuat);
-            this.pn_DangXuat.Location = new System.Drawing.Point(3, 161);
-            this.pn_DangXuat.Name = "pn_DangXuat";
-            this.pn_DangXuat.Size = new System.Drawing.Size(328, 73);
-            this.pn_DangXuat.TabIndex = 6;
+            this.btn_TrangChu.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_TrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_TrangChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TrangChu.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_TrangChu.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_home_32;
+            this.btn_TrangChu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_TrangChu.Location = new System.Drawing.Point(0, 0);
+            this.btn_TrangChu.Name = "btn_TrangChu";
+            this.btn_TrangChu.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btn_TrangChu.Size = new System.Drawing.Size(328, 73);
+            this.btn_TrangChu.TabIndex = 2;
+            this.btn_TrangChu.Text = "Trang chủ";
+            this.btn_TrangChu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_TrangChu.UseVisualStyleBackColor = false;
+            this.btn_TrangChu.Click += new System.EventHandler(this.btn_TrangChu_Click);
             // 
             // pn_CaiDat
             // 
@@ -147,84 +158,82 @@
             this.pn_CaiDat.Size = new System.Drawing.Size(328, 73);
             this.pn_CaiDat.TabIndex = 5;
             // 
+            // btn_CaiDat
+            // 
+            this.btn_CaiDat.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_CaiDat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_CaiDat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CaiDat.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_CaiDat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_setting_32;
+            this.btn_CaiDat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CaiDat.Location = new System.Drawing.Point(0, 0);
+            this.btn_CaiDat.Name = "btn_CaiDat";
+            this.btn_CaiDat.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btn_CaiDat.Size = new System.Drawing.Size(328, 73);
+            this.btn_CaiDat.TabIndex = 2;
+            this.btn_CaiDat.Text = "Cài Đặt";
+            this.btn_CaiDat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_CaiDat.UseVisualStyleBackColor = false;
+            // 
+            // pn_DangXuat
+            // 
+            this.pn_DangXuat.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pn_DangXuat.Controls.Add(this.btn_DangXuat);
+            this.pn_DangXuat.Location = new System.Drawing.Point(3, 161);
+            this.pn_DangXuat.Name = "pn_DangXuat";
+            this.pn_DangXuat.Size = new System.Drawing.Size(328, 73);
+            this.pn_DangXuat.TabIndex = 6;
+            // 
+            // btn_DangXuat
+            // 
+            this.btn_DangXuat.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_DangXuat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_DangXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_DangXuat.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_DangXuat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_shutdown_30;
+            this.btn_DangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_DangXuat.Location = new System.Drawing.Point(0, 0);
+            this.btn_DangXuat.Name = "btn_DangXuat";
+            this.btn_DangXuat.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btn_DangXuat.Size = new System.Drawing.Size(328, 73);
+            this.btn_DangXuat.TabIndex = 2;
+            this.btn_DangXuat.Text = "Đăng Xuất";
+            this.btn_DangXuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_DangXuat.UseVisualStyleBackColor = false;
+            // 
+            // pn_NguoiDung
+            // 
+            this.pn_NguoiDung.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pn_NguoiDung.Controls.Add(this.btn_NguoiDung);
+            this.pn_NguoiDung.Location = new System.Drawing.Point(3, 82);
+            this.pn_NguoiDung.Name = "pn_NguoiDung";
+            this.pn_NguoiDung.Size = new System.Drawing.Size(328, 73);
+            this.pn_NguoiDung.TabIndex = 4;
+            // 
+            // btn_NguoiDung
+            // 
+            this.btn_NguoiDung.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_NguoiDung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_NguoiDung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_NguoiDung.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_NguoiDung.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_user_30;
+            this.btn_NguoiDung.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_NguoiDung.Location = new System.Drawing.Point(0, 0);
+            this.btn_NguoiDung.Name = "btn_NguoiDung";
+            this.btn_NguoiDung.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btn_NguoiDung.Size = new System.Drawing.Size(328, 73);
+            this.btn_NguoiDung.TabIndex = 2;
+            this.btn_NguoiDung.Text = "Người dùng";
+            this.btn_NguoiDung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_NguoiDung.UseVisualStyleBackColor = false;
+            this.btn_NguoiDung.Click += new System.EventHandler(this.btn_NguoiDung_Click);
+            // 
             // sidebarTransition
             // 
             this.sidebarTransition.Interval = 10;
             this.sidebarTransition.Tick += new System.EventHandler(this.sidebarTransition_Tick);
             // 
-            // btn_NguoiDung
-            // 
-            this.btn_NguoiDung.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_NguoiDung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_NguoiDung.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_NguoiDung.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_user_30;
-            this.btn_NguoiDung.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_NguoiDung.Location = new System.Drawing.Point(-7, -20);
-            this.btn_NguoiDung.Name = "btn_NguoiDung";
-            this.btn_NguoiDung.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btn_NguoiDung.Size = new System.Drawing.Size(344, 114);
-            this.btn_NguoiDung.TabIndex = 2;
-            this.btn_NguoiDung.Text = "Người dùng";
-            this.btn_NguoiDung.UseVisualStyleBackColor = false;
-            // 
-            // btn_DangXuat
-            // 
-            this.btn_DangXuat.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_DangXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_DangXuat.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_DangXuat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_shutdown_30;
-            this.btn_DangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_DangXuat.Location = new System.Drawing.Point(-7, -20);
-            this.btn_DangXuat.Name = "btn_DangXuat";
-            this.btn_DangXuat.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btn_DangXuat.Size = new System.Drawing.Size(344, 114);
-            this.btn_DangXuat.TabIndex = 2;
-            this.btn_DangXuat.Text = "Đăng Xuất";
-            this.btn_DangXuat.UseVisualStyleBackColor = false;
-            // 
-            // btn_CaiDat
-            // 
-            this.btn_CaiDat.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_CaiDat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CaiDat.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_CaiDat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_setting_32;
-            this.btn_CaiDat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CaiDat.Location = new System.Drawing.Point(-7, -20);
-            this.btn_CaiDat.Name = "btn_CaiDat";
-            this.btn_CaiDat.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btn_CaiDat.Size = new System.Drawing.Size(344, 114);
-            this.btn_CaiDat.TabIndex = 2;
-            this.btn_CaiDat.Text = "Cài Đặt";
-            this.btn_CaiDat.UseVisualStyleBackColor = false;
-            // 
-            // btn_Ham
-            // 
-            this.btn_Ham.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_menu_30;
-            this.btn_Ham.Location = new System.Drawing.Point(19, 12);
-            this.btn_Ham.Name = "btn_Ham";
-            this.btn_Ham.Size = new System.Drawing.Size(51, 43);
-            this.btn_Ham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.btn_Ham.TabIndex = 1;
-            this.btn_Ham.TabStop = false;
-            this.btn_Ham.Click += new System.EventHandler(this.btn_Ham_Click);
-            // 
-            // btn_TrangChu
-            // 
-            this.btn_TrangChu.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_TrangChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_TrangChu.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_TrangChu.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_home_32;
-            this.btn_TrangChu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_TrangChu.Location = new System.Drawing.Point(-7, -20);
-            this.btn_TrangChu.Name = "btn_TrangChu";
-            this.btn_TrangChu.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.btn_TrangChu.Size = new System.Drawing.Size(344, 114);
-            this.btn_TrangChu.TabIndex = 2;
-            this.btn_TrangChu.Text = "Trang chủ";
-            this.btn_TrangChu.UseVisualStyleBackColor = false;
-            this.btn_TrangChu.Click += new System.EventHandler(this.btn_TrangChu_Click);
-            // 
-            // FormTmp
+            // AdminMainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1437, 820);
@@ -232,15 +241,15 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
-            this.Name = "FormTmp";
+            this.Name = "AdminMainForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_Ham)).EndInit();
             this.sidebar.ResumeLayout(false);
             this.pn_TrangChu.ResumeLayout(false);
-            this.pn_NguoiDung.ResumeLayout(false);
-            this.pn_DangXuat.ResumeLayout(false);
             this.pn_CaiDat.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btn_Ham)).EndInit();
+            this.pn_DangXuat.ResumeLayout(false);
+            this.pn_NguoiDung.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

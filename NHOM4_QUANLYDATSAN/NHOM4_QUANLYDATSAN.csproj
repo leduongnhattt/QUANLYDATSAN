@@ -42,9 +42,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="ReaLTaiizor, Version=3.8.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReaLTaiizor.3.8.1.3\lib\net481\ReaLTaiizor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,11 +63,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\SportsBookingContext.cs" />
+    <Compile Include="Forms\Admin\AddUserForm.cs" />
+    <Compile Include="Forms\Admin\AddUserForm.Designer.cs">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Admin\AdminMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Admin\AdminMainForm.Designer.cs">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_CaiDat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_CaiDat.Designer.cs">
+      <DependentUpon>frm_CaiDat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_NguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_NguoiDung.Designer.cs">
+      <DependentUpon>frm_NguoiDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_ThemNguoiDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_ThemNguoiDung.Designer.cs">
+      <DependentUpon>frm_ThemNguoiDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_TrangChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin\frm_TrangChu.Designer.cs">
+      <DependentUpon>frm_TrangChu.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -75,10 +109,16 @@
     <Compile Include="Forms\Owner\OwnerMainForm.Designer.cs">
       <DependentUpon>OwnerMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Helpers\MdiProperties.cs" />
     <Compile Include="Migrations\202507040852563_InitialDB.cs" />
     <Compile Include="Migrations\202507040852563_InitialDB.Designer.cs">
       <DependentUpon>202507040852563_InitialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202507050812588_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202507050812588_UpdateDatabase.Designer.cs">
+      <DependentUpon>202507050812588_UpdateDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -94,23 +134,38 @@
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.1.AssemblyAttributes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\AuthenticationService.cs" />
-    <Compile Include="Services\IAuthenticationService.cs" />
+    <EmbeddedResource Include="Forms\Admin\AdminMainForm.resx">
+      <DependentUpon>AdminMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frm_NguoiDung.resx">
+      <DependentUpon>frm_NguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frm_ThemNguoiDung.resx">
+      <DependentUpon>frm_ThemNguoiDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin\frm_TrangChu.resx">
+      <DependentUpon>frm_TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202507040852563_InitialDB.resx">
       <DependentUpon>202507040852563_InitialDB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202507050812588_UpdateDatabase.resx">
+      <DependentUpon>202507050812588_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\NHOM4_QUANLYDATSAN.csproj.AssemblyReference.cache" />
@@ -129,10 +184,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\san1.jpg" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="obj\Debug\TempPE\" />
+    <None Include="Resources\icons8-menu-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-user-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-shutdown-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-setting-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
