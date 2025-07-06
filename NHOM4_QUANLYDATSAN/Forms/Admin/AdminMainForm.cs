@@ -267,10 +267,8 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                 {
                     childForm.Close();
                 }
-                
-                // Đóng form admin và mở form đăng nhập
-                this.Close();
-                Forms.LoginForm loginForm = new Forms.LoginForm();
+                this.Hide();
+                LoginForm loginForm = new LoginForm();
                 loginForm.Show();
             }
         }

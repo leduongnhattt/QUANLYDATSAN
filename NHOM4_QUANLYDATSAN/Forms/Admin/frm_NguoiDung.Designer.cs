@@ -46,7 +46,7 @@
             this.btn_Sua = new System.Windows.Forms.Button();
             this.btn_Xoa = new System.Windows.Forms.Button();
             this.btn_Tim = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_TimKiem = new System.Windows.Forms.TextBox();
             this.btn_Xuat = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -102,15 +102,14 @@
             this.grid_NguoiDung.EnableHeadersVisualStyles = false;
             this.grid_NguoiDung.GridColor = System.Drawing.Color.Gainsboro;
             this.grid_NguoiDung.Location = new System.Drawing.Point(30, 198);
+            this.grid_NguoiDung.MultiSelect = false;
             this.grid_NguoiDung.Name = "grid_NguoiDung";
+            this.grid_NguoiDung.ReadOnly = true;
             this.grid_NguoiDung.RowHeadersWidth = 51;
             this.grid_NguoiDung.RowTemplate.Height = 150;
+            this.grid_NguoiDung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grid_NguoiDung.Size = new System.Drawing.Size(1538, 500);
             this.grid_NguoiDung.TabIndex = 1;
-            this.grid_NguoiDung.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid_NguoiDung.MultiSelect = false;
-            this.grid_NguoiDung.ReadOnly = true;
-            this.grid_NguoiDung.Enabled = true;
             // 
             // colSTT
             // 
@@ -119,6 +118,7 @@
             this.colSTT.HeaderText = "STT";
             this.colSTT.MinimumWidth = 60;
             this.colSTT.Name = "colSTT";
+            this.colSTT.ReadOnly = true;
             // 
             // colTenDangNhap
             // 
@@ -127,6 +127,7 @@
             this.colTenDangNhap.HeaderText = "Tên Đăng Nhập";
             this.colTenDangNhap.MinimumWidth = 140;
             this.colTenDangNhap.Name = "colTenDangNhap";
+            this.colTenDangNhap.ReadOnly = true;
             // 
             // colHoVaTen
             // 
@@ -135,6 +136,7 @@
             this.colHoVaTen.HeaderText = "Họ và Tên";
             this.colHoVaTen.MinimumWidth = 140;
             this.colHoVaTen.Name = "colHoVaTen";
+            this.colHoVaTen.ReadOnly = true;
             // 
             // colEmail
             // 
@@ -143,6 +145,7 @@
             this.colEmail.HeaderText = "Email";
             this.colEmail.MinimumWidth = 200;
             this.colEmail.Name = "colEmail";
+            this.colEmail.ReadOnly = true;
             // 
             // colSoDienThoai
             // 
@@ -151,6 +154,7 @@
             this.colSoDienThoai.HeaderText = "Số Điện Thoại";
             this.colSoDienThoai.MinimumWidth = 120;
             this.colSoDienThoai.Name = "colSoDienThoai";
+            this.colSoDienThoai.ReadOnly = true;
             // 
             // colDiaChi
             // 
@@ -159,6 +163,7 @@
             this.colDiaChi.HeaderText = "Địa Chỉ";
             this.colDiaChi.MinimumWidth = 140;
             this.colDiaChi.Name = "colDiaChi";
+            this.colDiaChi.ReadOnly = true;
             // 
             // colMatKhau
             // 
@@ -167,6 +172,7 @@
             this.colMatKhau.HeaderText = "Mật Khẩu";
             this.colMatKhau.MinimumWidth = 120;
             this.colMatKhau.Name = "colMatKhau";
+            this.colMatKhau.ReadOnly = true;
             // 
             // colNgayTao
             // 
@@ -175,6 +181,7 @@
             this.colNgayTao.HeaderText = "Ngày Tạo";
             this.colNgayTao.MinimumWidth = 100;
             this.colNgayTao.Name = "colNgayTao";
+            this.colNgayTao.ReadOnly = true;
             // 
             // colHinhAnh
             // 
@@ -184,6 +191,7 @@
             this.colHinhAnh.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.colHinhAnh.MinimumWidth = 260;
             this.colHinhAnh.Name = "colHinhAnh";
+            this.colHinhAnh.ReadOnly = true;
             // 
             // btn_Them
             // 
@@ -259,16 +267,16 @@
             this.btn_Tim.MouseEnter += new System.EventHandler(this.Button_MouseEnter);
             this.btn_Tim.MouseLeave += new System.EventHandler(this.Button_MouseLeave);
             // 
-            // textBox1
+            // txt_TimKiem
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.textBox1.ForeColor = System.Drawing.Color.Gray;
-            this.textBox1.Location = new System.Drawing.Point(1118, 121);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(280, 34);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Text = "Nhập thông tin tìm kiếm...";
+            this.txt_TimKiem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_TimKiem.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txt_TimKiem.ForeColor = System.Drawing.Color.Gray;
+            this.txt_TimKiem.Location = new System.Drawing.Point(1118, 121);
+            this.txt_TimKiem.Name = "txt_TimKiem";
+            this.txt_TimKiem.Size = new System.Drawing.Size(280, 34);
+            this.txt_TimKiem.TabIndex = 6;
+            this.txt_TimKiem.Text = "Nhập thông tin tìm kiếm...";
             // 
             // btn_Xuat
             // 
@@ -326,7 +334,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_Xuat);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_TimKiem);
             this.Controls.Add(this.btn_Tim);
             this.Controls.Add(this.btn_Xoa);
             this.Controls.Add(this.btn_Sua);
@@ -351,7 +359,7 @@
         private System.Windows.Forms.Button btn_Sua;
         private System.Windows.Forms.Button btn_Xoa;
         private System.Windows.Forms.Button btn_Tim;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_TimKiem;
         private System.Windows.Forms.Button btn_Xuat;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,8 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         private void btn_Load_Click(object sender, EventArgs e)
         {
             LoadDataToGridView();
+            txt_TimKiem.Text = "Nhập thông tin tìm kiếm...";
+            txt_TimKiem.ForeColor = Color.Gray;
         }
         private const string QUERY_USERS = "SELECT UserId, Username, FullName, Email, Phone, Address, Password, CreatedAt, AvatarPath FROM Users WHERE RoleID = 2";
 
@@ -33,8 +36,8 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         private void SetupForm()
         {
             // Thiết lập placeholder cho textbox tìm kiếm
-            textBox1.Enter += TextBox1_Enter;
-            textBox1.Leave += TextBox1_Leave;
+            txt_TimKiem.Enter += TextBox1_Enter;
+            txt_TimKiem.Leave += TextBox1_Leave;
             
             // Thiết lập font và style cho buttons
             SetButtonStyle(btn_Them);
@@ -46,19 +49,19 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
 
         private void TextBox1_Enter(object sender, EventArgs e)
         {
-            if (textBox1.Text == "Nhập thông tin tìm kiếm...")
+            if (txt_TimKiem.Text == "Nhập thông tin tìm kiếm...")
             {
-                textBox1.Text = "";
-                textBox1.ForeColor = Color.Black;
+                txt_TimKiem.Text = "";
+                txt_TimKiem.ForeColor = Color.Black;
             }
         }
 
         private void TextBox1_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(txt_TimKiem.Text))
             {
-                textBox1.Text = "Nhập thông tin tìm kiếm...";
-                textBox1.ForeColor = Color.Gray;
+                txt_TimKiem.Text = "Nhập thông tin tìm kiếm...";
+                txt_TimKiem.ForeColor = Color.Gray;
             }
         }
 
@@ -122,6 +125,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
 
         private void LoadDataToGridView()
         {
+            
             using (SqlConnection connection = DatabaseHelper.GetConnection())
             {
                 try
@@ -152,7 +156,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                                     }
                                     catch
                                     {
-                                        row["AvatarImage"] = null; 
+                                        row["AvatarImage"] = null;
                                     }
                                 }
                                 else
@@ -240,9 +244,11 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
             string phone = row.Cells["colPhone"].Value?.ToString();
             string address = row.Cells["colAddress"].Value?.ToString();
             string password = row.Cells["colPassword"].Value?.ToString();
+
+            // Lấy đúng đường dẫn ảnh từ DataBoundItem (DataRowView)
             string avatarPath = null;
-            if (row.Cells["colAvatar"] != null && row.Cells["colAvatar"].Value != null)
-                avatarPath = row.Cells["colAvatar"].Value.ToString();
+            if (row.DataBoundItem is DataRowView drv && drv.DataView.Table.Columns.Contains("AvatarPath"))
+                avatarPath = drv["AvatarPath"]?.ToString();
 
             // Mở form thêm người dùng ở chế độ sửa
             frm_ThemNguoiDung frmSua = new frm_ThemNguoiDung();
@@ -275,7 +281,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
 
         private void btn_Tim_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text.Trim();
+            string username = txt_TimKiem.Text.Trim();
             if (string.IsNullOrEmpty(username) || username == "Nhập thông tin tìm kiếm...")
             {
                 MessageBox.Show("Vui lòng nhập tên đăng nhập để tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -285,18 +291,43 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
             {
                 try
                 {
-                    string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                    // Lấy đúng các trường như DataGridView đang hiển thị
+                    string query = "SELECT UserId, Username, FullName, Email, Phone, Address, Password, CreatedAt, AvatarPath FROM Users WHERE Username = @Username AND RoleID = 2";
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
                         cmd.Parameters.AddWithValue("@Username", username);
-                        int count = (int)cmd.ExecuteScalar();
-                        if (count > 0)
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
-                            MessageBox.Show($"Tìm thấy người dùng '{username}' trong hệ thống!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Không tìm thấy người dùng '{username}'!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            DataTable dt = new DataTable();
+                            adapter.Fill(dt);
+                            if (dt.Rows.Count > 0)
+                            {
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    if (dt.Columns.Contains("STT"))
+                                        dt.Rows[i]["STT"] = i + 1;
+                                    if (dt.Columns.Contains("AvatarImage"))
+                                    {
+                                        object avatarPathObj = dt.Rows[i]["AvatarPath"];
+                                        if (avatarPathObj != DBNull.Value && !string.IsNullOrEmpty(avatarPathObj.ToString()))
+                                        {
+                                            try { dt.Rows[i]["AvatarImage"] = Image.FromFile(avatarPathObj.ToString()); }
+                                            catch { dt.Rows[i]["AvatarImage"] = null; }
+                                        }
+                                        else
+                                        {
+                                            dt.Rows[i]["AvatarImage"] = null;
+                                        }
+                                    }
+                                }
+                                grid_NguoiDung.AutoGenerateColumns = false;
+                                grid_NguoiDung.DataSource = dt;
+                                MessageBox.Show($"Tìm thấy người dùng '{username}' trong hệ thống!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Không tìm thấy người dùng '{username}'!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
                     }
                 }
@@ -311,25 +342,78 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         {
             if (grid_NguoiDung.DataSource is DataTable dt)
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Text files (*.txt)|*.txt";
-                sfd.Title = "Xuất dữ liệu người dùng ra file";
-                sfd.FileName = "nguoidung.txt";
-                if (sfd.ShowDialog() == DialogResult.OK)
+                var dialog = MessageBox.Show("Bạn muốn xuất dữ liệu ra file Excel (.xlsx) hay file văn bản (.txt)?\n\nChọn Yes để xuất Excel, No để xuất TXT.", "Chọn định dạng xuất file", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (dialog == DialogResult.Cancel) return;
+                if (dialog == DialogResult.Yes)
                 {
-                    using (var sw = new System.IO.StreamWriter(sfd.FileName, false, Encoding.UTF8))
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "Excel files (*.xlsx)|*.xlsx";
+                    sfd.Title = "Xuất dữ liệu người dùng ra file Excel";
+                    sfd.FileName = "nguoidung.xlsx";
+                    if (sfd.ShowDialog() == DialogResult.OK)
                     {
-                        // Header
-                        var headers = dt.Columns.Cast<DataColumn>().Select(c => c.ColumnName);
-                        sw.WriteLine(string.Join("\t", headers));
-                        // Data
-                        foreach (DataRow dr in dt.Rows)
+                        try
                         {
-                            var fields = dr.ItemArray.Select(f => f?.ToString()?.Replace("\t", " ") ?? "");
-                            sw.WriteLine(string.Join("\t", fields));
+                            using (var workbook = new XLWorkbook())
+                            {
+                                var ws = workbook.Worksheets.Add("NguoiDung");
+                                int col = 1;
+                                foreach (DataColumn dc in dt.Columns)
+                                {
+                                    if (dc.ColumnName == "AvatarImage") continue;
+                                    ws.Cell(1, col).Value = dc.ColumnName;
+                                    col++;
+                                }
+                                int row = 2;
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    col = 1;
+                                    foreach (DataColumn dc in dt.Columns)
+                                    {
+                                        if (dc.ColumnName == "AvatarImage") continue;
+                                        ws.Cell(row, col).Value = dr[dc.ColumnName]?.ToString();
+                                        col++;
+                                    }
+                                    row++;
+                                }
+                                ws.Columns().AdjustToContents();
+                                workbook.SaveAs(sfd.FileName);
+                            }
+                            MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Lỗi khi xuất file Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    MessageBox.Show("Xuất file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (dialog == DialogResult.No)
+                {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "Text files (*.txt)|*.txt";
+                    sfd.Title = "Xuất dữ liệu người dùng ra file văn bản";
+                    sfd.FileName = "nguoidung.txt";
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            using (var sw = new System.IO.StreamWriter(sfd.FileName, false, Encoding.UTF8))
+                            {
+                                var headers = dt.Columns.Cast<DataColumn>().Where(c => c.ColumnName != "AvatarImage").Select(c => c.ColumnName);
+                                sw.WriteLine(string.Join("\t", headers));
+                                foreach (DataRow dr in dt.Rows)
+                                {
+                                    var fields = dt.Columns.Cast<DataColumn>().Where(c => c.ColumnName != "AvatarImage").Select(c => dr[c]?.ToString()?.Replace("\t", " ") ?? "");
+                                    sw.WriteLine(string.Join("\t", fields));
+                                }
+                            }
+                            MessageBox.Show("Xuất file TXT thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Lỗi khi xuất file TXT: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
             else

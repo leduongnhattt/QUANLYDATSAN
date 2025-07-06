@@ -36,20 +36,20 @@
             this.sidebar = new System.Windows.Forms.FlowLayoutPanel();
             this.pn_TrangChu = new System.Windows.Forms.Panel();
             this.btn_TrangChu = new System.Windows.Forms.Button();
+            this.pn_NguoiDung = new System.Windows.Forms.Panel();
+            this.btn_NguoiDung = new System.Windows.Forms.Button();
             this.pn_CaiDat = new System.Windows.Forms.Panel();
             this.btn_CaiDat = new System.Windows.Forms.Button();
             this.pn_DangXuat = new System.Windows.Forms.Panel();
             this.btn_DangXuat = new System.Windows.Forms.Button();
-            this.pn_NguoiDung = new System.Windows.Forms.Panel();
-            this.btn_NguoiDung = new System.Windows.Forms.Button();
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_Ham)).BeginInit();
             this.sidebar.SuspendLayout();
             this.pn_TrangChu.SuspendLayout();
+            this.pn_NguoiDung.SuspendLayout();
             this.pn_CaiDat.SuspendLayout();
             this.pn_DangXuat.SuspendLayout();
-            this.pn_NguoiDung.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -114,8 +114,8 @@
             this.sidebar.BackColor = System.Drawing.Color.DodgerBlue;
             this.sidebar.Controls.Add(this.pn_TrangChu);
             this.sidebar.Controls.Add(this.pn_NguoiDung);
-            this.sidebar.Controls.Add(this.pn_DangXuat);
             this.sidebar.Controls.Add(this.pn_CaiDat);
+            this.sidebar.Controls.Add(this.pn_DangXuat);
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Location = new System.Drawing.Point(0, 69);
             this.sidebar.Name = "sidebar";
@@ -149,58 +149,6 @@
             this.btn_TrangChu.UseVisualStyleBackColor = false;
             this.btn_TrangChu.Click += new System.EventHandler(this.btn_TrangChu_Click);
             // 
-            // pn_CaiDat
-            // 
-            this.pn_CaiDat.BackColor = System.Drawing.SystemColors.Highlight;
-            this.pn_CaiDat.Controls.Add(this.btn_CaiDat);
-            this.pn_CaiDat.Location = new System.Drawing.Point(3, 240);
-            this.pn_CaiDat.Name = "pn_CaiDat";
-            this.pn_CaiDat.Size = new System.Drawing.Size(328, 73);
-            this.pn_CaiDat.TabIndex = 5;
-            // 
-            // btn_CaiDat
-            // 
-            this.btn_CaiDat.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_CaiDat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_CaiDat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CaiDat.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_CaiDat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_setting_32;
-            this.btn_CaiDat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CaiDat.Location = new System.Drawing.Point(0, 0);
-            this.btn_CaiDat.Name = "btn_CaiDat";
-            this.btn_CaiDat.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btn_CaiDat.Size = new System.Drawing.Size(328, 73);
-            this.btn_CaiDat.TabIndex = 2;
-            this.btn_CaiDat.Text = "Cài Đặt";
-            this.btn_CaiDat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_CaiDat.UseVisualStyleBackColor = false;
-            // 
-            // pn_DangXuat
-            // 
-            this.pn_DangXuat.BackColor = System.Drawing.SystemColors.Highlight;
-            this.pn_DangXuat.Controls.Add(this.btn_DangXuat);
-            this.pn_DangXuat.Location = new System.Drawing.Point(3, 161);
-            this.pn_DangXuat.Name = "pn_DangXuat";
-            this.pn_DangXuat.Size = new System.Drawing.Size(328, 73);
-            this.pn_DangXuat.TabIndex = 6;
-            // 
-            // btn_DangXuat
-            // 
-            this.btn_DangXuat.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_DangXuat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btn_DangXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_DangXuat.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_DangXuat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_shutdown_30;
-            this.btn_DangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_DangXuat.Location = new System.Drawing.Point(0, 0);
-            this.btn_DangXuat.Name = "btn_DangXuat";
-            this.btn_DangXuat.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btn_DangXuat.Size = new System.Drawing.Size(328, 73);
-            this.btn_DangXuat.TabIndex = 2;
-            this.btn_DangXuat.Text = "Đăng Xuất";
-            this.btn_DangXuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DangXuat.UseVisualStyleBackColor = false;
-            // 
             // pn_NguoiDung
             // 
             this.pn_NguoiDung.BackColor = System.Drawing.SystemColors.Highlight;
@@ -228,6 +176,60 @@
             this.btn_NguoiDung.UseVisualStyleBackColor = false;
             this.btn_NguoiDung.Click += new System.EventHandler(this.btn_NguoiDung_Click);
             // 
+            // pn_CaiDat
+            // 
+            this.pn_CaiDat.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pn_CaiDat.Controls.Add(this.btn_CaiDat);
+            this.pn_CaiDat.Location = new System.Drawing.Point(3, 161);
+            this.pn_CaiDat.Name = "pn_CaiDat";
+            this.pn_CaiDat.Size = new System.Drawing.Size(328, 73);
+            this.pn_CaiDat.TabIndex = 5;
+            // 
+            // btn_CaiDat
+            // 
+            this.btn_CaiDat.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_CaiDat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_CaiDat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_CaiDat.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_CaiDat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_setting_32;
+            this.btn_CaiDat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CaiDat.Location = new System.Drawing.Point(0, 0);
+            this.btn_CaiDat.Name = "btn_CaiDat";
+            this.btn_CaiDat.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btn_CaiDat.Size = new System.Drawing.Size(328, 73);
+            this.btn_CaiDat.TabIndex = 2;
+            this.btn_CaiDat.Text = "Cài Đặt";
+            this.btn_CaiDat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_CaiDat.UseVisualStyleBackColor = false;
+            this.btn_CaiDat.Click += new System.EventHandler(this.btn_CaiDat_Click);
+            // 
+            // pn_DangXuat
+            // 
+            this.pn_DangXuat.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pn_DangXuat.Controls.Add(this.btn_DangXuat);
+            this.pn_DangXuat.Location = new System.Drawing.Point(3, 240);
+            this.pn_DangXuat.Name = "pn_DangXuat";
+            this.pn_DangXuat.Size = new System.Drawing.Size(328, 73);
+            this.pn_DangXuat.TabIndex = 6;
+            // 
+            // btn_DangXuat
+            // 
+            this.btn_DangXuat.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_DangXuat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_DangXuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_DangXuat.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_DangXuat.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.icons8_shutdown_30;
+            this.btn_DangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_DangXuat.Location = new System.Drawing.Point(0, 0);
+            this.btn_DangXuat.Name = "btn_DangXuat";
+            this.btn_DangXuat.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btn_DangXuat.Size = new System.Drawing.Size(328, 73);
+            this.btn_DangXuat.TabIndex = 2;
+            this.btn_DangXuat.Text = "Đăng Xuất";
+            this.btn_DangXuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_DangXuat.UseVisualStyleBackColor = false;
+            this.btn_DangXuat.Click += new System.EventHandler(this.btn_DangXuat_Click);
+            // 
             // sidebarTransition
             // 
             this.sidebarTransition.Interval = 10;
@@ -247,9 +249,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btn_Ham)).EndInit();
             this.sidebar.ResumeLayout(false);
             this.pn_TrangChu.ResumeLayout(false);
+            this.pn_NguoiDung.ResumeLayout(false);
             this.pn_CaiDat.ResumeLayout(false);
             this.pn_DangXuat.ResumeLayout(false);
-            this.pn_NguoiDung.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

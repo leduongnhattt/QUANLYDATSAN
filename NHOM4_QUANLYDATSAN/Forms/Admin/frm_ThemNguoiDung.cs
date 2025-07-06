@@ -18,7 +18,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         private const string CheckUsernameQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
         private const string InsertUserQuery = "INSERT INTO Users (Username, FullName, Email, Phone, RoleID, CreatedAt, IsActive, Address, AvatarPath, Password) " +
                                                "VALUES (@Username, @FullName, @Email, @Phone, @RoleID, @CreatedAt, @IsActive, @Address, @AvatarPath, @Password)";
-
+        private const string UpdateUserQuery = "UPDATE Users SET FullName=@FullName, Email=@Email, Phone=@Phone, Address=@Address, Password=@Password, AvatarPath=@AvatarPath WHERE UserId=@UserId";
         public frm_ThemNguoiDung()
         {
             InitializeComponent();
@@ -202,7 +202,6 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
             }
         }
 
-        // Chế độ sửa: truyền dữ liệu lên form, đổi label và nút
         public void SetEditMode(string username, string fullName, string email, string phone, string address, string password, string avatarPath)
         {
             txt_TenDangNhap.Text = username;
@@ -235,19 +234,17 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
             bigLabel1.Text = "Sửa Người Dùng";
             btn_Them.Text = "Sửa";
             btn_Them.Click -= btn_Them_Click;
-            // Chỉ gán lại event handler một lần, không cần foreach (sẽ lỗi biên dịch)
             btn_Them.Click -= btn_Sua_Click;
             btn_Them.Click += btn_Sua_Click;
             txt_TenDangNhap.Enabled = true;
 
         }
 
-        // Sự kiện sửa (dùng cho nút Sửa khi ở chế độ sửa)
         private void btn_Sua_Click(object sender, EventArgs e)
         {
             UpdateUser();
         }
-        // Hàm update user (lấy giá trị mới nhất từ textbox)
+        
         private void UpdateUser()
         {
             string username = txt_TenDangNhap.Text.Trim();
@@ -282,8 +279,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                         userId = Convert.ToInt32(result);
                     }
                     // Update theo userId
-                    string query = "UPDATE Users SET FullName=@FullName, Email=@Email, Phone=@Phone, Address=@Address, Password=@Password, AvatarPath=@AvatarPath WHERE UserId=@UserId";
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    using (SqlCommand cmd = new SqlCommand(UpdateUserQuery, connection))
                     {
                         cmd.Parameters.AddWithValue("@FullName", fullName);
                         cmd.Parameters.AddWithValue("@Email", email);
