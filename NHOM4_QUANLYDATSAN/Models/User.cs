@@ -19,7 +19,8 @@ namespace NHOM4_QUANLYDATSAN.Models
         public string Note { get; set; }
 
         public virtual Role Role { get; set; }
-        public virtual ICollection<Venue> Venues { get; set; }
         public virtual ICollection<Booking> BookingsCreated { get; set; }
+        public virtual ICollection<Court> CourtsManaged { get; set; }
+        public virtual ICollection<Membership> Memberships { get; set; } 
     }
-} 
+}

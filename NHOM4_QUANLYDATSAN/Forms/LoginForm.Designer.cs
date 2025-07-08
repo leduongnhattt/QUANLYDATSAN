@@ -186,6 +186,7 @@ namespace NHOM4_QUANLYDATSAN.Forms
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.san_3;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(900, 695);
