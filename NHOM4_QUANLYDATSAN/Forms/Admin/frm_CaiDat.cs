@@ -19,7 +19,6 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
-            // Mặc định ngôn ngữ là Tiếng Việt
             comboBoxLanguage.SelectedIndex = 0;
             btnSave.Enabled = false;
 

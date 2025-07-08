@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NHOM4_QUANLYDATSAN.Helpers;
 using System.Data.SqlClient;
+using NHOM4_QUANLYDATSAN.Data;
 
 namespace NHOM4_QUANLYDATSAN.Forms.Admin
 {
@@ -89,14 +90,10 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         /// </summary>
         private void AdjustGridColumns()
         {
-            // Đảm bảo AutoSizeColumnsMode luôn là Fill
             grid_NguoiDung.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // Đảm bảo không có scroll bar ngang
             grid_NguoiDung.ScrollBars = ScrollBars.Vertical;
-            // Đảm bảo FillWeight không bị reset khi resize
             foreach (DataGridViewColumn col in grid_NguoiDung.Columns)
             {
-                // Giữ nguyên FillWeight đã set trong Designer
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
@@ -125,73 +122,78 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
 
         private void LoadDataToGridView()
         {
-            
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+            using (var context = new SportsBookingContext())
             {
-                try
-                {
-                    using (SqlCommand command = new SqlCommand(QUERY_USERS, connection))
+                var users = context.Users
+                    .Where(u => u.RoleID == 2)
+                    .Select(u => new
                     {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        u.UserID,
+                        u.Username,
+                        u.FullName,
+                        u.Email,
+                        u.Phone,
+                        u.Address,
+                        u.Password,
+                        u.CreatedAt,
+                        u.AvatarPath
+                    })
+                    .ToList();
+
+                var dataTable = new DataTable();
+                dataTable.Columns.Add("STT", typeof(int));
+                dataTable.Columns.Add("Username", typeof(string));
+                dataTable.Columns.Add("FullName", typeof(string));
+                dataTable.Columns.Add("Email", typeof(string));
+                dataTable.Columns.Add("Phone", typeof(string));
+                dataTable.Columns.Add("Address", typeof(string));
+                dataTable.Columns.Add("Password", typeof(string));
+                dataTable.Columns.Add("CreatedAt", typeof(DateTime));
+                dataTable.Columns.Add("AvatarImage", typeof(Image));
+
+                int index = 1;
+                foreach (var user in users)
+                {
+                    Image avatarImage = null;
+                    if (!string.IsNullOrEmpty(user.AvatarPath) && System.IO.File.Exists(user.AvatarPath))
+                    {
+                        try
                         {
-                            DataTable dataTable = new DataTable();
-                            adapter.Fill(dataTable);
-
-                            // Thêm cột STT vào DataTable
-                            dataTable.Columns.Add("STT", typeof(int));
-
-                            // Thêm cột AvatarImage kiểu Image
-                            if (!dataTable.Columns.Contains("AvatarImage"))
-                                dataTable.Columns.Add("AvatarImage", typeof(Image));
-
-                            // Chuyển đổi AvatarPath (string) sang AvatarImage (Image)
-                            foreach (DataRow row in dataTable.Rows)
-                            {
-                                object avatarPathObj = row["AvatarPath"];
-                                if (avatarPathObj != DBNull.Value && !string.IsNullOrEmpty(avatarPathObj.ToString()))
-                                {
-                                    try
-                                    {
-                                        row["AvatarImage"] = Image.FromFile(avatarPathObj.ToString());
-                                    }
-                                    catch
-                                    {
-                                        row["AvatarImage"] = null;
-                                    }
-                                }
-                                else
-                                {
-                                    row["AvatarImage"] = null;
-                                }
-                            }
-
-                            // Thêm giá trị tự tăng cho cột STT
-                            for (int i = 0; i < dataTable.Rows.Count; i++)
-                            {
-                                dataTable.Rows[i]["STT"] = i + 1;
-                            }
-
-                            grid_NguoiDung.AutoGenerateColumns = false;
-                            grid_NguoiDung.Columns.Clear();
-
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colSTT", HeaderText = "STT", DataPropertyName = "STT", Width = 50 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colUsername", HeaderText = "Tên Đăng Nhập", DataPropertyName = "Username", Width = 150 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colFullName", HeaderText = "Họ và Tên", DataPropertyName = "FullName", Width = 150 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colEmail", HeaderText = "Email", DataPropertyName = "Email", Width = 200 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colPhone", HeaderText = "Số Điện Thoại", DataPropertyName = "Phone", Width = 120 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colAddress", HeaderText = "Địa Chỉ", DataPropertyName = "Address", Width = 200 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colPassword", HeaderText = "Mật Khẩu", DataPropertyName = "Password", Width = 150 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colCreatedAt", HeaderText = "Ngày Tạo", DataPropertyName = "CreatedAt", Width = 120 });
-                            grid_NguoiDung.Columns.Add(new DataGridViewImageColumn { Name = "colAvatar", HeaderText = "Hình Ảnh", DataPropertyName = "AvatarImage", Width = 160, ImageLayout = DataGridViewImageCellLayout.Zoom });
-
-                            grid_NguoiDung.DataSource = dataTable;
+                            avatarImage = Image.FromFile(user.AvatarPath);
+                        }
+                        catch
+                        {
+                            avatarImage = null;
                         }
                     }
+
+                    dataTable.Rows.Add(
+                        index++,
+                        user.Username,
+                        user.FullName,
+                        user.Email,
+                        user.Phone,
+                        user.Address,
+                        user.Password,
+                        user.CreatedAt,
+                        avatarImage
+                    );
                 }
-                finally
-                {
-                    DatabaseHelper.CloseConnection(connection);
-                }
+
+                grid_NguoiDung.AutoGenerateColumns = false;
+                grid_NguoiDung.Columns.Clear();
+
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colSTT", HeaderText = "STT", DataPropertyName = "STT", Width = 50 });
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colUsername", HeaderText = "Tên Đăng Nhập", DataPropertyName = "Username", Width = 150 });
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colFullName", HeaderText = "Họ và Tên", DataPropertyName = "FullName", Width = 150 });
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colEmail", HeaderText = "Email", DataPropertyName = "Email", Width = 200 });
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colPhone", HeaderText = "Số Điện Thoại", DataPropertyName = "Phone", Width = 120 });
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colAddress", HeaderText = "Địa Chỉ", DataPropertyName = "Address", Width = 200 });
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colPassword", HeaderText = "Mật Khẩu", DataPropertyName = "Password", Width = 150 });
+                grid_NguoiDung.Columns.Add(new DataGridViewTextBoxColumn { Name = "colCreatedAt", HeaderText = "Ngày Tạo", DataPropertyName = "CreatedAt", Width = 120 });
+                grid_NguoiDung.Columns.Add(new DataGridViewImageColumn { Name = "colAvatar", HeaderText = "Hình Ảnh", DataPropertyName = "AvatarImage", Width = 160, ImageLayout = DataGridViewImageCellLayout.Zoom });
+
+                grid_NguoiDung.DataSource = dataTable;
             }
         }
 
@@ -223,6 +225,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         {
             frm_ThemNguoiDung frmThem = new frm_ThemNguoiDung();
             frmThem.ShowDialog();
+            LoadDataToGridView();
         }
         private void btn_Sua_Click(object sender, EventArgs e)
         {
@@ -287,53 +290,75 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                 MessageBox.Show("Vui lòng nhập tên đăng nhập để tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+
+            using (var context = new SportsBookingContext())
             {
-                try
-                {
-                    // Lấy đúng các trường như DataGridView đang hiển thị
-                    string query = "SELECT UserId, Username, FullName, Email, Phone, Address, Password, CreatedAt, AvatarPath FROM Users WHERE Username = @Username AND RoleID = 2";
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                var users = context.Users
+                    .Where(u => u.Username == username && u.RoleID == 2)
+                    .Select(u => new
                     {
-                        cmd.Parameters.AddWithValue("@Username", username);
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        u.UserID,
+                        u.Username,
+                        u.FullName,
+                        u.Email,
+                        u.Phone,
+                        u.Address,
+                        u.Password,
+                        u.CreatedAt,
+                        u.AvatarPath
+                    })
+                    .ToList();
+
+                if (users.Any())
+                {
+                    var dataTable = new DataTable();
+                    dataTable.Columns.Add("STT", typeof(int));
+                    dataTable.Columns.Add("Username", typeof(string));
+                    dataTable.Columns.Add("FullName", typeof(string));
+                    dataTable.Columns.Add("Email", typeof(string));
+                    dataTable.Columns.Add("Phone", typeof(string));
+                    dataTable.Columns.Add("Address", typeof(string));
+                    dataTable.Columns.Add("Password", typeof(string));
+                    dataTable.Columns.Add("CreatedAt", typeof(DateTime));
+                    dataTable.Columns.Add("AvatarImage", typeof(Image));
+
+                    int index = 1;
+                    foreach (var user in users)
+                    {
+                        Image avatarImage = null;
+                        if (!string.IsNullOrEmpty(user.AvatarPath) && System.IO.File.Exists(user.AvatarPath))
                         {
-                            DataTable dt = new DataTable();
-                            adapter.Fill(dt);
-                            if (dt.Rows.Count > 0)
+                            try
                             {
-                                for (int i = 0; i < dt.Rows.Count; i++)
-                                {
-                                    if (dt.Columns.Contains("STT"))
-                                        dt.Rows[i]["STT"] = i + 1;
-                                    if (dt.Columns.Contains("AvatarImage"))
-                                    {
-                                        object avatarPathObj = dt.Rows[i]["AvatarPath"];
-                                        if (avatarPathObj != DBNull.Value && !string.IsNullOrEmpty(avatarPathObj.ToString()))
-                                        {
-                                            try { dt.Rows[i]["AvatarImage"] = Image.FromFile(avatarPathObj.ToString()); }
-                                            catch { dt.Rows[i]["AvatarImage"] = null; }
-                                        }
-                                        else
-                                        {
-                                            dt.Rows[i]["AvatarImage"] = null;
-                                        }
-                                    }
-                                }
-                                grid_NguoiDung.AutoGenerateColumns = false;
-                                grid_NguoiDung.DataSource = dt;
-                                MessageBox.Show($"Tìm thấy người dùng '{username}' trong hệ thống!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                avatarImage = Image.FromFile(user.AvatarPath);
                             }
-                            else
+                            catch
                             {
-                                MessageBox.Show($"Không tìm thấy người dùng '{username}'!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                avatarImage = null;
                             }
                         }
+
+                        dataTable.Rows.Add(
+                            index++,
+                            user.Username,
+                            user.FullName,
+                            user.Email,
+                            user.Phone,
+                            user.Address,
+                            user.Password,
+                            user.CreatedAt,
+                            avatarImage
+                        );
                     }
+
+                    grid_NguoiDung.AutoGenerateColumns = false;
+                    grid_NguoiDung.DataSource = dataTable;
+                    MessageBox.Show($"Tìm thấy người dùng '{username}' trong hệ thống!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                finally
+                else
                 {
-                    DatabaseHelper.CloseConnection(connection);
+                    MessageBox.Show($"Không tìm thấy người dùng '{username}'!", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDataToGridView();
                 }
             }
         }
@@ -425,20 +450,13 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         // Xóa user theo username
         private void DeleteUser(string username)
         {
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+            using (var context = new SportsBookingContext())
             {
-                try
+                var user = context.Users.FirstOrDefault(u => u.Username == username);
+                if (user != null)
                 {
-                    string query = "DELETE FROM Users WHERE Username = @Username";
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@Username", username);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                finally
-                {
-                    DatabaseHelper.CloseConnection(connection);
+                    context.Users.Remove(user);
+                    context.SaveChanges();
                 }
             }
         }

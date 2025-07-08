@@ -1,12 +1,11 @@
-using System;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using NHOM4_QUANLYDATSAN.Services;
 using NHOM4_QUANLYDATSAN.Forms.Admin;
 using NHOM4_QUANLYDATSAN.Forms.Owner;
+using NHOM4_QUANLYDATSAN.Services;
+using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace NHOM4_QUANLYDATSAN.Forms
 {
@@ -17,10 +16,9 @@ namespace NHOM4_QUANLYDATSAN.Forms
         private readonly string usernamePlaceholder = "Tên đăng nhập";
         private readonly string passwordPlaceholder = "Mật khẩu";
         private bool isTextChangedRegistered = false;
-
         private AuthenticationService _authenticationService;
 
-        
+
         public LoginForm()
         {
             InitializeComponent();
@@ -33,7 +31,25 @@ namespace NHOM4_QUANLYDATSAN.Forms
                 isTextChangedRegistered = true;
             }
         }
+        private void pictureBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+        {
+            string line1 = "HỆ THỐNG QUẢN LÝ ĐẶT SÂN THỂ THAO";
+            string line2 = "Nhóm 4";
+            System.Drawing.Font fontLine1 = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
+            System.Drawing.Font fontLine2 = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
 
+            System.Drawing.SizeF textSizeLine1 = e.Graphics.MeasureString(line1, fontLine1);
+            System.Drawing.SizeF textSizeLine2 = e.Graphics.MeasureString(line2, fontLine2);
+
+            float xLine1 = (pictureBox1.Width - textSizeLine1.Width) / 2;
+            float yLine1 = (pictureBox1.Height - textSizeLine1.Height - textSizeLine2.Height) / 2;
+
+            float xLine2 = (pictureBox1.Width - textSizeLine2.Width) / 2;
+            float yLine2 = yLine1 + textSizeLine1.Height + 10; // khoảng cách giữa hai dòng
+
+            e.Graphics.DrawString(line1, fontLine1, new System.Drawing.SolidBrush(System.Drawing.Color.Blue), xLine1, yLine1);
+            e.Graphics.DrawString(line2, fontLine2, new System.Drawing.SolidBrush(System.Drawing.Color.Blue), xLine2, yLine2);
+        }
         // Vẽ gradient nền hiện đại cho panelGradient
         private void panelGradient_Paint(object sender, PaintEventArgs e)
         {
@@ -159,7 +175,6 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.Close();
         }
 
-        // Cho phép kéo form khi không có viền
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -170,7 +185,7 @@ namespace NHOM4_QUANLYDATSAN.Forms
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
@@ -200,6 +215,7 @@ namespace NHOM4_QUANLYDATSAN.Forms
             if (!_authenticationService.Authenticate(username, password, out role))
             {
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ClearForm();
                 return;
             }
 
@@ -207,14 +223,19 @@ namespace NHOM4_QUANLYDATSAN.Forms
             {
                 AdminMainForm adminForm = new AdminMainForm();
                 adminForm.Show();
+                this.Hide();
+                return;
             }
-            else
-            {
-                OwnerMainForm ownerForm = new OwnerMainForm();
-                ownerForm.Show();
-            }
-
+            OwnerMainForm ownerForm = new OwnerMainForm(username);
+            ownerForm.Show();
             this.Hide();
+        }
+        private void ClearForm()
+        {
+            txtUsername.Text = usernamePlaceholder;
+            txtUsername.ForeColor = Color.Gray;
+            txtPassword.Text = passwordPlaceholder;
+            txtPassword.ForeColor = Color.Gray;
         }
     }
 }

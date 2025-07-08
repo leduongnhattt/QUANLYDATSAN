@@ -14,11 +14,9 @@ namespace NHOM4_QUANLYDATSAN.Models
         public TimeSpan EndTime { get; set; }
         public string Status { get; set; }
         public int CreatedByUserID { get; set; }
-        public DateTime CreatedAt { get; set; }
         public string Note { get; set; }
-
         public virtual Court Court { get; set; }
         public virtual Membership Membership { get; set; }
         public virtual User CreatedBy { get; set; }
     }
-} 
+}
