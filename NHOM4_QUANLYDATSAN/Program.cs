@@ -1,5 +1,6 @@
 ﻿using NHOM4_QUANLYDATSAN.Forms;
 using NHOM4_QUANLYDATSAN.Forms.Admin;
+using NHOM4_QUANLYDATSAN.Forms.Owner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace NHOM4_QUANLYDATSAN
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdminMainForm());
+            Application.Run(new OwnerMainForm("nhatle"));
+            //Application.Run(new AdminMainForm());
         }
     }
 }

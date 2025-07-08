@@ -10,7 +10,6 @@ namespace NHOM4_QUANLYDATSAN.Data
         {
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<Court> Courts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
@@ -18,15 +17,15 @@ namespace NHOM4_QUANLYDATSAN.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
-        public DbSet<Venue> Venues { get; set; }
 
+        // Configuring the relationship between Court and User to avoid cascading issues
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Venue>()
-                .HasRequired(v => v.Owner)
-                .WithMany(u => u.Venues)
-                .HasForeignKey(v => v.OwnerUserID)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Court>()
+                .HasRequired(c => c.User)
+                .WithMany(u => u.CourtsManaged)
+                .HasForeignKey(c => c.UserID)
+                .WillCascadeOnDelete(false); 
 
             base.OnModelCreating(modelBuilder);
         }

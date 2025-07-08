@@ -186,6 +186,7 @@ namespace NHOM4_QUANLYDATSAN.Forms
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::NHOM4_QUANLYDATSAN.Properties.Resources.san_3;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(900, 695);
@@ -220,24 +221,6 @@ namespace NHOM4_QUANLYDATSAN.Forms
 
         private System.Windows.Forms.PictureBox pictureBox1;
 
-        private void pictureBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
-        {
-            string line1 = "HỆ THỐNG QUẢN LÝ ĐẶT SÂN THỂ THAO";
-            string line2 = "Nhóm 4";
-            System.Drawing.Font fontLine1 = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
-            System.Drawing.Font fontLine2 = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold);
-
-            System.Drawing.SizeF textSizeLine1 = e.Graphics.MeasureString(line1, fontLine1);
-            System.Drawing.SizeF textSizeLine2 = e.Graphics.MeasureString(line2, fontLine2);
-
-            float xLine1 = (pictureBox1.Width - textSizeLine1.Width) / 2;
-            float yLine1 = (pictureBox1.Height - textSizeLine1.Height - textSizeLine2.Height) / 2;
-
-            float xLine2 = (pictureBox1.Width - textSizeLine2.Width) / 2;
-            float yLine2 = yLine1 + textSizeLine1.Height + 10; // khoảng cách giữa hai dòng
-
-            e.Graphics.DrawString(line1, fontLine1, new System.Drawing.SolidBrush(System.Drawing.Color.Blue), xLine1, yLine1);
-            e.Graphics.DrawString(line2, fontLine2, new System.Drawing.SolidBrush(System.Drawing.Color.Blue), xLine2, yLine2);
-        }
+        
     }
 }

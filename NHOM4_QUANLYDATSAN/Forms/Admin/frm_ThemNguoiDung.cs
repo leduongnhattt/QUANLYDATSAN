@@ -10,15 +10,14 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using NHOM4_QUANLYDATSAN.Helpers;
+using NHOM4_QUANLYDATSAN.Data;
+using NHOM4_QUANLYDATSAN.Models;
 
 namespace NHOM4_QUANLYDATSAN.Forms.Admin
 {
     public partial class frm_ThemNguoiDung : Form
     {
-        private const string CheckUsernameQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
-        private const string InsertUserQuery = "INSERT INTO Users (Username, FullName, Email, Phone, RoleID, CreatedAt, IsActive, Address, AvatarPath, Password) " +
-                                               "VALUES (@Username, @FullName, @Email, @Phone, @RoleID, @CreatedAt, @IsActive, @Address, @AvatarPath, @Password)";
-        private const string UpdateUserQuery = "UPDATE Users SET FullName=@FullName, Email=@Email, Phone=@Phone, Address=@Address, Password=@Password, AvatarPath=@AvatarPath WHERE UserId=@UserId";
+        private static User _currentUser;
         public frm_ThemNguoiDung()
         {
             InitializeComponent();
@@ -153,52 +152,35 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
 
         private bool IsUsernameExists(string username)
         {
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+            using (var context = new SportsBookingContext())
             {
-                try
-                {
-                    using (SqlCommand checkCommand = new SqlCommand(CheckUsernameQuery, connection))
-                    {
-                        checkCommand.Parameters.AddWithValue("@Username", username);
-                        int count = (int)checkCommand.ExecuteScalar();
-                        return count > 0;
-                    }
-                }
-                finally
-                {
-                    DatabaseHelper.CloseConnection(connection);
-                }
+                return context.Users.Any(u => u.Username == username);
             }
         }
 
         private void AddUser(string username, string fullName, string email, string phoneNumber, string address, string password, string avatarPath)
         {
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+            using (var context = new SportsBookingContext())
             {
-                try
+                var newUser = new User
                 {
-                    using (SqlCommand insertCommand = new SqlCommand(InsertUserQuery, connection))
-                    {
-                        insertCommand.Parameters.AddWithValue("@Username", username);
-                        insertCommand.Parameters.AddWithValue("@FullName", fullName);
-                        insertCommand.Parameters.AddWithValue("@Email", email);
-                        insertCommand.Parameters.AddWithValue("@Phone", phoneNumber);
-                        insertCommand.Parameters.AddWithValue("@RoleID", 2); 
-                        insertCommand.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
-                        insertCommand.Parameters.AddWithValue("@IsActive", true);
-                        insertCommand.Parameters.AddWithValue("@Address", address);
-                        insertCommand.Parameters.AddWithValue("@AvatarPath", avatarPath);
-                        insertCommand.Parameters.AddWithValue("@Password", password);
+                    Username = username,
+                    FullName = fullName,
+                    Email = email,
+                    Phone = phoneNumber,
+                    RoleID = 2,
+                    CreatedAt = DateTime.Now,
+                    IsActive = true,
+                    Address = address,
+                    AvatarPath = avatarPath,
+                    Password = password
+                };
 
-                        insertCommand.ExecuteNonQuery();
-                    }
+                context.Users.Add(newUser);
+                context.SaveChanges();
 
-                    MessageBox.Show("Thêm người dùng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                finally
-                {
-                    DatabaseHelper.CloseConnection(connection);
-                }
+                MessageBox.Show("Thêm người dùng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
 
@@ -210,6 +192,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
             txt_Sdt.Text = phone;
             txt_DiaChi.Text = address;
             txt_MatKhau.Text = password;
+
             if (!string.IsNullOrEmpty(avatarPath) && System.IO.File.Exists(avatarPath))
             {
                 try
@@ -231,6 +214,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                 pic_Avatar.Image = Properties.Resources.icons8_user_30;
                 pic_Avatar.ImageLocation = null;
             }
+
             bigLabel1.Text = "Sửa Người Dùng";
             btn_Them.Text = "Sửa";
             btn_Them.Click -= btn_Them_Click;
@@ -238,6 +222,10 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
             btn_Them.Click += btn_Sua_Click;
             txt_TenDangNhap.Enabled = true;
 
+            using (var context = new SportsBookingContext())
+            {
+                _currentUser = context.Users.FirstOrDefault(u => u.Username == username);
+            }
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
@@ -247,6 +235,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
         
         private void UpdateUser()
         {
+            string originalUsername = txt_TenDangNhap.Text.Trim(); 
             string username = txt_TenDangNhap.Text.Trim();
             string fullName = txt_HoVaTen.Text.Trim();
             string email = txt_Email.Text.Trim();
@@ -260,43 +249,32 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                 return;
             }
 
-            int userId = -1;
-            using (SqlConnection connection = DatabaseHelper.GetConnection())
+            using (var context = new SportsBookingContext())
             {
-                try
+                var user = context.Users.FirstOrDefault(u => u.RoleID == _currentUser.RoleID);
+                if (user == null)
                 {
-                    // Lấy userId dựa vào username
-                    string getIdQuery = "SELECT UserId FROM Users WHERE Username = @Username";
-                    using (SqlCommand getIdCmd = new SqlCommand(getIdQuery, connection))
-                    {
-                        getIdCmd.Parameters.AddWithValue("@Username", username);
-                        var result = getIdCmd.ExecuteScalar();
-                        if (result == null || result == DBNull.Value)
-                        {
-                            MessageBox.Show("Không tìm thấy người dùng để cập nhật!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                        userId = Convert.ToInt32(result);
-                    }
-                    // Update theo userId
-                    using (SqlCommand cmd = new SqlCommand(UpdateUserQuery, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@FullName", fullName);
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Phone", phoneNumber);
-                        cmd.Parameters.AddWithValue("@Address", address);
-                        cmd.Parameters.AddWithValue("@Password", password);
-                        cmd.Parameters.AddWithValue("@AvatarPath", avatarPath);
-                        cmd.Parameters.AddWithValue("@UserId", userId);
-                        cmd.ExecuteNonQuery();
-                    }
-                    MessageBox.Show("Cập nhật người dùng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    MessageBox.Show("Người dùng không tồn tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                finally
+                if (context.Users.Any(u => u.Username == username && u.UserID != user.UserID))
                 {
-                    DatabaseHelper.CloseConnection(connection);
+                    MessageBox.Show("Tên đăng nhập đã tồn tại trong hệ thống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                user.Username = username;
+                user.FullName = fullName;
+                user.Email = email;
+                user.Phone = phoneNumber;
+                user.Address = address;
+                user.Password = password;
+                user.AvatarPath = avatarPath;
+
+                context.SaveChanges();
+
+                MessageBox.Show("Cập nhật người dùng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
     }

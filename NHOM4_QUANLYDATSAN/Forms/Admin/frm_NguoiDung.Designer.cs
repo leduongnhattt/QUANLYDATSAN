@@ -50,7 +50,6 @@
             this.btn_Xuat = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btn_Load = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid_NguoiDung)).BeginInit();
             this.SuspendLayout();
             // 
@@ -310,27 +309,12 @@
             this.panel2.Size = new System.Drawing.Size(500, 2);
             this.panel2.TabIndex = 9;
             // 
-            // btn_Load
-            // 
-            this.btn_Load.BackColor = System.Drawing.Color.LightBlue;
-            this.btn_Load.FlatAppearance.BorderColor = System.Drawing.Color.SkyBlue;
-            this.btn_Load.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Load.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Load.Location = new System.Drawing.Point(50, 104);
-            this.btn_Load.Name = "btn_Load";
-            this.btn_Load.Size = new System.Drawing.Size(150, 50);
-            this.btn_Load.TabIndex = 10;
-            this.btn_Load.Text = "Tải Dữ Liệu";
-            this.btn_Load.UseVisualStyleBackColor = false;
-            this.btn_Load.Click += new System.EventHandler(this.btn_Load_Click);
-            // 
             // frm_NguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1611, 809);
-            this.Controls.Add(this.btn_Load);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_Xuat);
@@ -371,7 +355,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.Button btn_Load;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSTT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenDangNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHoVaTen;

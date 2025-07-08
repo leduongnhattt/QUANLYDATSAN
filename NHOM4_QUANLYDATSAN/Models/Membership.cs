@@ -16,7 +16,8 @@ namespace NHOM4_QUANLYDATSAN.Models
         public DateTime EndDate { get; set; }
         public decimal DiscountRate { get; set; }
         public string Note { get; set; }
-
+        public int UserID { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
     }
 } 
