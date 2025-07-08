@@ -14,11 +14,13 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
     public partial class frm_QuanLySan : Form
     {
         private string _username;
-        public frm_QuanLySan(string username)
+        private string _email;
+        public frm_QuanLySan(string username, string email)
         {
             InitializeComponent();
             _username = username;
             LoadData();
+            _email = email;
         }
 
         private void frm_ThemSanLoad(object sender, EventArgs e)
@@ -63,15 +65,25 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
 
                     grid_San.Rows.Clear();
                     int index = 1;
+                    string resourcesPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources");
                     foreach (var field in sportsFields)
                     {
+                        Image img = null;
+                        if (!string.IsNullOrEmpty(field.ImagePath))
+                        {
+                            string imageFullPath = System.IO.Path.Combine(resourcesPath, field.ImagePath);
+                            if (System.IO.File.Exists(imageFullPath))
+                            {
+                                img = Image.FromFile(imageFullPath);
+                            }
+                        }
                         grid_San.Rows.Add(
                             index++,
                             field.CourtName,
                             field.SportType,
                             field.VenueName,
                             field.PricePerHour,
-                            string.IsNullOrEmpty(field.ImagePath) ? null : Image.FromFile(field.ImagePath),
+                            img,
                             field.TimeOpen.ToString(@"hh\:mm") + " - " + field.TimeClose.ToString(@"hh\:mm"),
                             field.CountTime
                         );

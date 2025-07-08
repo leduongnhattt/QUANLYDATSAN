@@ -311,7 +311,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
         {
             if (quanLySan == null || quanLySan.IsDisposed)
             {
-                quanLySan = new frm_QuanLySan(_username);
+                quanLySan = new frm_QuanLySan(_username, email);
                 quanLySan.FormClosed += QuanLySan_FormClosed;
                 quanLySan.MdiParent = this;
             }

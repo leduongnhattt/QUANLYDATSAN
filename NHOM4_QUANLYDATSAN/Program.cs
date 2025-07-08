@@ -19,8 +19,8 @@ namespace NHOM4_QUANLYDATSAN
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OwnerMainForm("nhatle"));
-            //Application.Run(new AdminMainForm());
+            //Application.Run(new OwnerMainForm("nhatle"));
+            Application.Run(new LoginForm());
         }
     }
 }
