@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace NHOM4_QUANLYDATSAN.Forms.Owner
 {
@@ -122,7 +123,14 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
                 txt_Tuan.Visible = false;
             }
         }
-
+        private void clear_Fields()
+        {
+            txt_GhiChu.Text = "";
+            txt_HoiVien.Text = "";
+            txt_Sdt.Text = "";
+            txt_TenKhachHang.Text = "";
+            txt_Tuan.Text = "";
+        }
         private void txt_Them_Click(object sender, EventArgs e)
         {
             string email = txt_HoiVien.Text.Trim();
@@ -255,6 +263,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
 
                 // Gọi hàm LoadData để làm mới DataGridView
                 LoadData();
+                clear_Fields();
             }
         }
 

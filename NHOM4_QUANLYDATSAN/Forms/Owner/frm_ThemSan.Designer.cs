@@ -342,9 +342,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(55, 385);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 25);
+            this.label5.Size = new System.Drawing.Size(196, 25);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Số Giờ Được Đặt";
+            this.label5.Text = "Số Giờ đặt tối thiểu";
             // 
             // label6
             // 
