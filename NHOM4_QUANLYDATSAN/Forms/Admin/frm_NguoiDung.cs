@@ -150,6 +150,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                 dataTable.Columns.Add("Password", typeof(string));
                 dataTable.Columns.Add("CreatedAt", typeof(DateTime));
                 dataTable.Columns.Add("AvatarImage", typeof(Image));
+                dataTable.Columns.Add("AvatarPath", typeof(string));
 
                 int index = 1;
                 foreach (var user in users)
@@ -176,7 +177,8 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                         user.Address,
                         user.Password,
                         user.CreatedAt,
-                        avatarImage
+                        avatarImage,
+                        user.AvatarPath // Thêm đường dẫn ảnh vào DataTable
                     );
                 }
 
@@ -251,7 +253,9 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
             // Lấy đúng đường dẫn ảnh từ DataBoundItem (DataRowView)
             string avatarPath = null;
             if (row.DataBoundItem is DataRowView drv && drv.DataView.Table.Columns.Contains("AvatarPath"))
+            {
                 avatarPath = drv["AvatarPath"]?.ToString();
+            }
 
             // Mở form thêm người dùng ở chế độ sửa
             frm_ThemNguoiDung frmSua = new frm_ThemNguoiDung();

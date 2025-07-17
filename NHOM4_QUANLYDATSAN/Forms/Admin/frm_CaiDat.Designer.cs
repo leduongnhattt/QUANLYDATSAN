@@ -75,7 +75,7 @@
             this.comboBoxLanguage.Items.AddRange(new object[] {
             "Tiếng Việt",
             "English"});
-            this.comboBoxLanguage.Location = new System.Drawing.Point(150, 40);
+            this.comboBoxLanguage.Location = new System.Drawing.Point(179, 40);
             this.comboBoxLanguage.Name = "comboBoxLanguage";
             this.comboBoxLanguage.Size = new System.Drawing.Size(200, 36);
             this.comboBoxLanguage.TabIndex = 1;

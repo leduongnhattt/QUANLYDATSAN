@@ -118,9 +118,9 @@ namespace NHOM4_QUANLYDATSAN.Forms.Admin
                 MessageBox.Show("Số điện thoại không được bỏ trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!Regex.IsMatch(phoneNumber, "^\\d{12}$"))
+            if (!Regex.IsMatch(phoneNumber, "^\\d{11}$"))
             {
-                MessageBox.Show("Số điện thoại phải đủ 12 số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Số điện thoại phải đủ 11 số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

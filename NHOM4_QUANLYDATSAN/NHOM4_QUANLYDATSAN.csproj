@@ -120,12 +120,6 @@
     <Compile Include="Forms\Admin\AdminMainForm.Designer.cs">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Admin\FormTmp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Admin\FormTmp.Designer.cs">
-      <DependentUpon>FormTmp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Admin\frm_CaiDat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,9 +246,6 @@
     <Compile Include="Services\AuthenticationService.cs" />
     <EmbeddedResource Include="Forms\Admin\AdminMainForm.resx">
       <DependentUpon>AdminMainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Admin\FormTmp.resx">
-      <DependentUpon>FormTmp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Admin\frm_CaiDat.resx">
       <DependentUpon>frm_CaiDat.cs</DependentUpon>

@@ -46,9 +46,9 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
                 MessageBox.Show("Số điện thoại phải là số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (phoneNumber.Length < 9 || phoneNumber.Length > 12)
+            if (phoneNumber.Length < 9 || phoneNumber.Length > 11)
             {
-                MessageBox.Show("Số điện thoại phải từ 9-12 số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Số điện thoại phải từ 9-11 số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(selectedTime))

@@ -79,7 +79,14 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
                 grid_HoiVien.DataSource = memberships;
             }
         }
-
+        private void Clear_Fields()
+        {
+            this.txt_GhiChu.Text = "";
+            this.txt_HoiVien.Text = "";
+            this.txt_Sdt.Text = "";
+            this.txt_TenKhachHang.Text = "";
+            this.txt_Tuan.Text = "";
+        }
         private void cbb_HoiVien_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedItem = cbb_HoiVien.SelectedItem?.ToString();
@@ -254,6 +261,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
                 MessageBox.Show("Thêm hội viên thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Gọi hàm LoadData để làm mới DataGridView
+                Clear_Fields();
                 LoadData();
             }
         }

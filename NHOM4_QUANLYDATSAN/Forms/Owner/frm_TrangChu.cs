@@ -29,6 +29,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
             if (cbb_LuaChon != null) cbb_LuaChon.SelectedIndexChanged += cbb_LuaChon_SelectedIndexChanged;
             _userName = userName;
             _email = email;
+
         }
 
         // Sự kiện Load của form (được gọi từ Designer)
@@ -242,6 +243,13 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
                 case 2: return ThongKeType.Nam;
                 default: return ThongKeType.Thang;
             }
+        }
+
+        // Sự kiện Tick của timerAutoRefresh (tạo trong Designer)
+        private void timerAutoRefresh_Tick(object sender, EventArgs e)
+        {
+            LoadData();
+            LoadOxyPlotChart(GetThongKeType());
         }
 
         private void cbb_LuaChon_SelectedIndexChanged(object sender, EventArgs e)

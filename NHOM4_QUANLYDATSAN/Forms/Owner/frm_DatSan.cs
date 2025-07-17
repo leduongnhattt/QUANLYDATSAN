@@ -21,6 +21,7 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
             InitializeComponent();
             _userName = _username;
             _email = email;
+            LoadLoaiSan(_userName);
         }
         private void frm_DatSan_Load(object sender, EventArgs e)
         {
