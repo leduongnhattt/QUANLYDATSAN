@@ -140,22 +140,54 @@ namespace NHOM4_QUANLYDATSAN.Forms.Owner
                 return;
             }
 
-            string imagePath = pic_HinhAnh.Tag.ToString();
+
             string resourcesPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Resources");
             if (!System.IO.Directory.Exists(resourcesPath))
             {
                 System.IO.Directory.CreateDirectory(resourcesPath);
             }
-            string newImagePath = System.IO.Path.Combine(resourcesPath, System.IO.Path.GetFileName(imagePath));
 
-            try
+            string newImagePath = null;
+            bool isNewImage = false;
+            if (_courtToEdit != null)
             {
-                System.IO.File.Copy(imagePath, newImagePath, true);
+                // Edit mode
+                if (pic_HinhAnh.Tag != null && pic_HinhAnh.Tag.ToString() != _courtToEdit.ImagePath)
+                {
+                    // User selected a new image
+                    string imagePath = pic_HinhAnh.Tag.ToString();
+                    newImagePath = System.IO.Path.Combine(resourcesPath, System.IO.Path.GetFileName(imagePath));
+                    try
+                    {
+                        System.IO.File.Copy(imagePath, newImagePath, true);
+                        isNewImage = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Không thể sao chép hình ảnh. Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    // Keep old image path
+                    newImagePath = _courtToEdit.ImagePath;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Không thể sao chép hình ảnh. Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                // Add mode
+                string imagePath = pic_HinhAnh.Tag.ToString();
+                newImagePath = System.IO.Path.Combine(resourcesPath, System.IO.Path.GetFileName(imagePath));
+                try
+                {
+                    System.IO.File.Copy(imagePath, newImagePath, true);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Không thể sao chép hình ảnh. Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             using (var context = new SportsBookingContext())

@@ -182,7 +182,6 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.panelGradient.Name = "panelGradient";
             this.panelGradient.Size = new System.Drawing.Size(900, 695);
             this.panelGradient.TabIndex = 2;
-            this.panelGradient.Paint += new System.Windows.Forms.PaintEventHandler(this.panelGradient_Paint);
             // 
             // pictureBox1
             // 
@@ -193,7 +192,6 @@ namespace NHOM4_QUANLYDATSAN.Forms
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // LoginForm
             // 
